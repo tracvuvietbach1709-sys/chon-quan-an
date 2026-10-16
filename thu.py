@@ -1,4 +1,5 @@
 from flask import Flask, render_template_string, request
+import os
 
 app = Flask(__name__)
 
@@ -346,5 +347,7 @@ def next_page():
 def places_page():
     return render_template_string(PAGE_3_HTML)
 
+# Cấu hình cổng động chạy trên Render.com (Phần khắc phục cốt lõi)
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
